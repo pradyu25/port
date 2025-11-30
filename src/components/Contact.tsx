@@ -49,7 +49,7 @@ const Contact = () => {
     },
     {
       icon: Linkedin,
-      href: "https://linkedin.com/in/placeholder",
+      href: "https://www.linkedin.com/in/m-pradyumna-ravi-chandra-5536752b6/",
       label: "LinkedIn",
     },
     {
