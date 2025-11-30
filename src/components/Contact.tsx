@@ -54,7 +54,7 @@ const Contact = () => {
     },
     {
       icon: Mail,
-      href: "mailto:placeholder@example.com",
+      href: "mailto:mprc9125@gmail.com",
       label: "Email",
     },
   ];

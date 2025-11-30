@@ -5,31 +5,30 @@ import { Button } from "./ui/button";
 
 const projects = [
   {
-    title: "AI-Powered Recommendation System",
-    description: "Built a machine learning model for personalized content recommendations using collaborative filtering.",
-    tech: ["Python", "TensorFlow", "pandas", "Flask"],
-    github: "https://github.com/pradyu25/project1",
-    align: "left",
-  },
-  {
-    title: "Deep Learning Image Classifier",
-    description: "Developed a CNN-based image classification system achieving 95% accuracy on test data.",
-    tech: ["PyTorch", "OpenCV", "NumPy", "React"],
-    github: "https://github.com/pradyu25/project2",
+    title: "Credit Score Intelligence",
+    description:
+      "Created an interactive dashboard for visualizing Credit score data with real-time updates.",
+    tech: ["Python", "Vultr Cloud", "Pandas", "Streamlit"],
+    github: "https://github.com/pradyu25/credit-score-intelligence",
+    image: "/projects/credit.png", // <-- Add your image
     align: "right",
   },
   {
-    title: "Real-Time Data Analytics Dashboard",
-    description: "Created an interactive dashboard for visualizing large-scale data with real-time updates.",
-    tech: ["Python", "Plotly", "Pandas", "SQL"],
-    github: "https://github.com/pradyu25/project3",
+    title: "Movie and Book Recommendation System",
+    description:
+      "Built a machine learning model for personalized movie and book recommendations using collaborative filtering.",
+    tech: ["Python", "TensorFlow", "Pandas", "Flask", "Streamlit"],
+    github: "https://github.com/pradyu25/Movie-and-book-recommendation",
+    image: "/projects/recomm.png", // <-- Add your image
     align: "left",
   },
   {
-    title: "NLP Sentiment Analysis Tool",
-    description: "Implemented natural language processing for sentiment analysis on social media data.",
-    tech: ["Python", "NLTK", "Transformers", "FastAPI"],
-    github: "https://github.com/pradyu25/project4",
+    title: "Intrusion Detection System",
+    description:
+      "Developed an ML-based Intrusion detection system achieving 92% accuracy on test data.",
+    tech: ["Python", "Pandas", "Numpy", "Scikit-learn"],
+    github: "https://github.com/pradyu25/Intrusion-detection-system",
+    image: "/projects/intrusion.png", // <-- Add your image
     align: "right",
   },
 ];
@@ -42,11 +41,15 @@ const Projects = () => {
 
   return (
     <section id="projects" className="min-h-screen py-20 relative overflow-hidden">
+      {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 opacity-10" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, hsl(var(--neon-blue)) 1px, transparent 0)`,
-          backgroundSize: "40px 40px",
-        }} />
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, hsl(var(--neon-blue)) 1px, transparent 0)`,
+            backgroundSize: "40px 40px",
+          }}
+        />
       </div>
 
       <div className="container mx-auto px-4 relative z-10" ref={ref}>
@@ -70,24 +73,42 @@ const Projects = () => {
                 project.align === "right" ? "md:grid-flow-dense" : ""
               }`}
             >
-              {/* Visual panel */}
+              {/* Image panel */}
               <div
                 className={`glassmorphism p-8 rounded-2xl neon-border group hover:shadow-neon transition-all duration-300 ${
                   project.align === "right" ? "md:col-start-2" : ""
                 }`}
               >
-                <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <div className="text-center">
-                    <Github className="w-16 h-16 mx-auto mb-4 text-primary" />
-                    <p className="text-muted-foreground">Project Preview</p>
-                  </div>
+                <div className="aspect-video bg-black/20 rounded-lg overflow-hidden flex items-center justify-center relative group">
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className="text-center">
+                      <Github className="w-16 h-16 mx-auto mb-4 text-primary" />
+                      <p className="text-muted-foreground">Project Preview</p>
+                    </div>
+                  )}
+
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-primary transition-opacity duration-300" />
                 </div>
               </div>
 
               {/* Content */}
-              <div className={project.align === "right" ? "md:col-start-1 md:row-start-1" : ""}>
-                <h3 className="text-2xl md:text-3xl font-bold mb-4 text-glow">{project.title}</h3>
-                <p className="text-lg text-muted-foreground mb-6">{project.description}</p>
+              <div
+                className={
+                  project.align === "right" ? "md:col-start-1 md:row-start-1" : ""
+                }
+              >
+                <h3 className="text-2xl md:text-3xl font-bold mb-4 text-glow">
+                  {project.title}
+                </h3>
+                <p className="text-lg text-muted-foreground mb-6">
+                  {project.description}
+                </p>
 
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tech.map((tech) => (
@@ -113,6 +134,7 @@ const Projects = () => {
           ))}
         </div>
 
+        {/* View More Button */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

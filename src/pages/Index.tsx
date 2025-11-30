@@ -1,4 +1,3 @@
-import ScrollNavigation from "@/components/ScrollNavigation";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
@@ -10,8 +9,7 @@ const Index = () => {
 
   return (
     <div className="relative">
-      <ScrollNavigation sections={sections} />
-      
+    
       <main className="overflow-x-hidden">
         <Hero />
         <About />
