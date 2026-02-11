@@ -1,16 +1,13 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Github, Linkedin, Mail, Send } from "lucide-react";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
+import { Github, Linkedin, Mail, Phone, MapPin, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 
 const Contact = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.2,
+    threshold: 0.1,
   });
 
   const { toast } = useToast();
@@ -22,7 +19,7 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.name || !formData.email || !formData.message) {
       toast({
         title: "Missing fields",
@@ -32,7 +29,6 @@ const Contact = () => {
       return;
     }
 
-    // Simulate form submission
     toast({
       title: "Message sent!",
       description: "Thank you for reaching out. I'll get back to you soon.",
@@ -41,128 +37,146 @@ const Contact = () => {
     setFormData({ name: "", email: "", message: "" });
   };
 
-  const socialLinks = [
-    {
-      icon: Github,
-      href: "https://github.com/pradyu25",
-      label: "GitHub",
-    },
-    {
-      icon: Linkedin,
-      href: "https://www.linkedin.com/in/m-pradyumna-ravi-chandra-5536752b6/",
-      label: "LinkedIn",
-    },
-    {
-      icon: Mail,
-      href: "mailto:mprc9125@gmail.com",
-      label: "Email",
-    },
+  const contactInfo = [
+    { icon: Mail, label: "Email", value: "mprc9125@gmail.com", href: "mailto:mprc9125@gmail.com" },
+    { icon: Phone, label: "Phone", value: "+91 8142943409", href: "tel:+918142943409" },
+    { icon: MapPin, label: "Location", value: "Hyderabad, Telangana", href: "#" },
+    { icon: Linkedin, label: "LinkedIn", value: "Pradyumna Ravi Chandra", href: "https://www.linkedin.com/in/musunuri-pradyumna-ravi-chandra-a08500306/" },
+    { icon: Github, label: "GitHub", value: "@pradyu25", href: "https://github.com/pradyu25" },
   ];
 
   return (
-    <section id="contact" className="min-h-screen flex items-center py-20 relative overflow-hidden">
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 opacity-10" style={{
-          backgroundImage: `linear-gradient(hsl(var(--neon-blue) / 0.2) 2px, transparent 2px),
-                           linear-gradient(90deg, hsl(var(--neon-blue) / 0.2) 2px, transparent 2px)`,
-          backgroundSize: "60px 60px",
-        }} />
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10" ref={ref}>
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-6xl font-bold text-center mb-12 text-glow"
-        >
-          Get In <span className="text-primary">Touch</span>
-        </motion.h2>
-
+    <section id="contact" className="py-20 px-6 lg:px-12">
+      <div className="max-w-6xl mx-auto" ref={ref}>
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-2xl mx-auto"
+          transition={{ duration: 0.6 }}
+          className="mb-12"
         >
-          <form onSubmit={handleSubmit} className="glassmorphism p-8 rounded-2xl neon-border space-y-6">
-            <div>
-              <Input
-                type="text"
-                placeholder="Your Name"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="bg-background/50 border-primary/30 focus:border-primary text-foreground"
-              />
-            </div>
-
-            <div>
-              <Input
-                type="email"
-                placeholder="Your Email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="bg-background/50 border-primary/30 focus:border-primary text-foreground"
-              />
-            </div>
-
-            <div>
-              <Textarea
-                placeholder="Your Message"
-                rows={6}
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="bg-background/50 border-primary/30 focus:border-primary text-foreground resize-none"
-              />
-            </div>
-
-            <Button
-              type="submit"
-              size="lg"
-              className="w-full neon-border bg-primary/10 hover:bg-primary/20 text-primary font-semibold group relative overflow-hidden"
-            >
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                Send Message
-              </span>
-              <div className="absolute inset-0 bg-primary/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-            </Button>
-          </form>
-
-          {/* Social Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex justify-center gap-6 mt-12"
-          >
-            {socialLinks.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-4 rounded-full neon-border bg-background/50 hover:bg-primary/20 group transition-all duration-300 hover:scale-110"
-                aria-label={social.label}
-              >
-                <social.icon className="w-6 h-6 text-primary group-hover:rotate-12 transition-transform" />
-              </a>
-            ))}
-          </motion.div>
-
-          {/* Footer */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-center mt-12 space-y-2"
-          >
-            <p className="text-lg font-bold text-primary">Musunuri Pradyumna Ravi Chandra</p>
-            <p className="text-sm text-muted-foreground italic">
-              Building intelligent systems for the future.
-            </p>
-          </motion.div>
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-1 h-8 bg-primary rounded-full glow" />
+            <h2 className="text-3xl md:text-4xl font-bold">Get In Touch</h2>
+          </div>
+          <p className="text-muted-foreground max-w-2xl">
+            Feel free to reach out for opportunities, collaborations, or just to connect
+          </p>
         </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-12">
+          {/* Contact Info */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="space-y-4"
+          >
+            {contactInfo.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <motion.a
+                  key={index}
+                  href={item.href}
+                  target={item.href.startsWith('http') ? '_blank' : undefined}
+                  rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ x: 10, scale: 1.02 }}
+                  className="flex items-center gap-4 p-4 bg-card border border-border rounded-xl hover:border-primary/50 transition-all card-shadow hover:glow group"
+                >
+                  <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
+                    <Icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground font-medium">{item.label}</p>
+                    <p className="font-medium group-hover:text-primary transition-colors">{item.value}</p>
+                  </div>
+                </motion.a>
+              );
+            })}
+          </motion.div>
+
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.2 }}
+              >
+                <label htmlFor="name" className="block text-sm font-medium mb-2">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                  placeholder="Your name"
+                />
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.3 }}
+              >
+                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                  placeholder="your.email@example.com"
+                />
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.4 }}
+              >
+                <label htmlFor="message" className="block text-sm font-medium mb-2">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  required
+                  rows={5}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none"
+                  placeholder="Your message..."
+                />
+              </motion.div>
+
+              <motion.button
+                type="submit"
+                initial={{ opacity: 0, y: 10 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.5 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-all card-shadow hover:shadow-lg glow flex items-center justify-center gap-2"
+              >
+                Send Message
+                <Send className="w-4 h-4" />
+              </motion.button>
+            </form>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

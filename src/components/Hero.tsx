@@ -1,130 +1,34 @@
-import { motion } from "framer-motion";
-import { Home, User, Code2, Sparkles, Mail, Award, ChevronDown } from "lucide-react";
+import { motion, useAnimation } from "framer-motion";
+import { Github, Linkedin, Mail, Phone, MapPin, Sparkles, Code2, Brain, Rocket } from "lucide-react";
+import { useEffect, useState } from "react";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
-};
-
-// Floating nav buttons (left side)
-
-const navItems = [
-  { id: "hero", label: "Home", icon: Home },
-  { id: "about", label: "About", icon: User },
-  { id: "projects", label: "Projects", icon: Code2 },
-  { id: "certifications", label: "Certifications", icon: Award }, // ✅ NEW
-  { id: "contact", label: "Contact", icon: Mail },
+const roles = [
+  "AI/ML Engineer",
+  "Data Scientist",
+  "Full-Stack Developer",
+  "Problem Solver",
 ];
 
-// Brain Network Background
-function BrainNetwork() {
-  const nodes = [
-    { cx: 20, cy: 30 },
-    { cx: 40, cy: 18 },
-    { cx: 65, cy: 25 },
-    { cx: 85, cy: 40 },
-    { cx: 78, cy: 65 },
-    { cx: 55, cy: 75 },
-    { cx: 30, cy: 70 },
-    { cx: 15, cy: 50 },
-  ];
-
-  const links: [number, number][] = [
-    [0, 1],
-    [1, 2],
-    [2, 3],
-    [3, 4],
-    [4, 5],
-    [5, 6],
-    [6, 7],
-    [7, 0],
-    [1, 5],
-    [2, 6],
-    [3, 7],
-  ];
-
-  return (
-    <motion.div
-      className="absolute inset-0 pointer-events-none flex items-center justify-center"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 0.45 }}
-      transition={{ duration: 1.5, delay: 0.6 }}
-    >
-      <motion.div
-        className="w-full h-full flex items-center justify-center"
-        animate={{
-          x: ["-4%", "4%", "-4%"],
-          y: ["-3%", "3%", "-3%"],
-        }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <motion.svg
-          viewBox="0 0 100 100"
-          className="w-[70vw] max-w-[700px] h-auto"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-        >
-          <motion.path
-            d="M32 28 C20 35 18 55 30 65 C30 80 48 84 55 72 C65 85 84 80 82 60 C92 52 90 34 75 30 C70 20 50 16 40 20 Z"
-            fill="none"
-            stroke="rgba(34,211,238,0.45)"
-            strokeWidth="1.2"
-            strokeDasharray="5 4"
-            animate={{ strokeDashoffset: [18, 0, 18] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-          />
-
-          {links.map(([a, b], i) => {
-            const n1 = nodes[a], n2 = nodes[b];
-            return (
-              <motion.line
-                key={i}
-                x1={n1.cx}
-                y1={n1.cy}
-                x2={n2.cx}
-                y2={n2.cy}
-                stroke="rgba(59,130,246,0.5)"
-                strokeWidth="0.8"
-                animate={{ opacity: [0.2, 0.8, 0.2] }}
-                transition={{ duration: 6, repeat: Infinity, delay: i * 0.25 }}
-              />
-            );
-          })}
-
-          {nodes.map((node, i) => (
-            <motion.circle
-              key={i}
-              cx={node.cx}
-              cy={node.cy}
-              r={1.6}
-              fill="rgba(34,211,238,0.9)"
-              animate={{ opacity: [0.4, 1, 0.4], scale: [0.9, 1.25, 0.9] }}
-              transition={{ duration: 3.5, repeat: Infinity, delay: i * 0.2 }}
-            />
-          ))}
-        </motion.svg>
-      </motion.div>
-    </motion.div>
-  );
-}
-
 export default function Hero() {
+  const [currentRole, setCurrentRole] = useState(0);
+  const controls = useAnimation();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentRole((prev) => (prev + 1) % roles.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    controls.start({
+      opacity: [0, 1],
+      y: [10, 0],
+      transition: { duration: 0.5 },
+    });
+  }, [currentRole, controls]);
+
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
@@ -132,148 +36,206 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black text-white px-6"
+      className="min-h-screen flex items-center justify-center px-6 lg:px-12 pt-20 lg:pt-0"
     >
-      {/* Glow animation */}
-      <motion.div
-        className="absolute inset-0 opacity-30 z-0"
-        animate={{
-          background: [
-            "radial-gradient(circle at 20% 50%, rgba(0, 246, 255, 0.15), transparent 60%)",
-            "radial-gradient(circle at 80% 50%, rgba(255, 0, 170, 0.15), transparent 60%)",
-            "radial-gradient(circle at 50% 80%, rgba(0, 246, 255, 0.15), transparent 60%)",
-            "radial-gradient(circle at 20% 50%, rgba(0, 246, 255, 0.15), transparent 60%)",
-          ],
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-      />
-
-      {/* Brain network */}
-      <BrainNetwork />
-
-      {/* FLOATING BUTTON NAVIGATION */}
-      <div className="hidden lg:flex flex-col gap-6 fixed left-6 top-1/2 -translate-y-1/2 z-20">
-        {navItems.map(({ id, icon: Icon }) => (
-          <motion.button
-            key={id}
-            onClick={() => scrollTo(id)}
-            className="w-12 h-12 rounded-xl border border-cyan-400/40 bg-black/40 backdrop-blur-md flex items-center justify-center hover:bg-cyan-500/10 hover:border-cyan-300 hover:shadow-[0_0_20px_rgba(0,246,255,0.5)] transition-all"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
+      <div className="max-w-6xl mx-auto w-full">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="space-y-6 order-2 lg:order-1"
           >
-            <Icon className="w-5 h-5 text-cyan-300" />
-          </motion.button>
-        ))}
-      </div>
+            <div className="space-y-4">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 }}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium"
+              >
+                <Sparkles className="w-4 h-4" />
+                Available for Opportunities
+              </motion.div>
 
-      {/* MAIN GRID */}
-      <div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center relative z-10">
-        {/* LEFT CONTENT */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="space-y-6"
-        >
-          <motion.h1
-            variants={itemVariants}
-            className="text-4xl md:text-6xl font-bold leading-tight tracking-tight"
-          >
-            Musunuri <br />
-            Pradyumna <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-              Ravi Chandra
-            </span>
-          </motion.h1>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                className="text-muted-foreground font-medium"
+              >
+                Hello, I'm
+              </motion.p>
 
-          <motion.p
-            variants={itemVariants}
-            className="text-sm md:text-base text-cyan-300/80 font-mono tracking-wide"
-          >
-            Hyderabad, India · CSE (AI & ML) · 2022 – 2026
-          </motion.p>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight"
+              >
+                Musunuri Pradyumna
+                <br />
+                <span className="gradient-text">Ravi Chandra</span>
+              </motion.h1>
 
-          <motion.p
-            variants={itemVariants}
-            className="text-lg text-gray-300 leading-relaxed max-w-xl"
-          >
-            Motivated AI and ML enthusiast focused on building scalable,
-            intelligent backend systems powered by real-time machine learning
-            and generative AI workflows.
-          </motion.p>
+              {/* Animated Role */}
+              <motion.div
+                className="h-12 flex items-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+              >
+                <motion.div
+                  key={currentRole}
+                  animate={controls}
+                  className="flex items-center gap-2 text-xl md:text-2xl font-semibold text-primary"
+                >
+                  {currentRole === 0 && <Brain className="w-6 h-6" />}
+                  {currentRole === 1 && <Code2 className="w-6 h-6" />}
+                  {currentRole === 2 && <Rocket className="w-6 h-6" />}
+                  {currentRole === 3 && <Sparkles className="w-6 h-6" />}
+                  {roles[currentRole]}
+                </motion.div>
+              </motion.div>
+            </div>
 
-          {/* BUTTONS */}
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 pt-4">
-            <motion.button
-              onClick={() => scrollTo("projects")}
-              className="px-8 py-3 bg-cyan-500/10 border border-cyan-400 text-cyan-400 rounded-lg"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0,246,255,0.5)" }}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="text-lg text-muted-foreground leading-relaxed max-w-xl"
             >
-              VIEW PROJECTS
-            </motion.button>
+              Results-driven <span className="font-semibold text-foreground">AI/ML and Data Science</span> undergraduate passionate about building scalable, intelligent systems that solve real-world problems. Seeking to contribute advanced modeling, analytics, and automation skills to develop high-impact, data-driven solutions in a dynamic environment.
+            </motion.p>
 
-            <motion.a
-              href="/lRESUMEin.pdf"
-              download
-              className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg"
-              whileHover={{ scale: 1.05 }}
+            {/* Contact Info */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7 }}
+              className="flex flex-wrap gap-4 text-sm text-muted-foreground"
             >
-              DOWNLOAD RESUME
-            </motion.a>
+              <a href="mailto:mprc9125@gmail.com" className="flex items-center gap-2 hover:text-primary transition-colors">
+                <Mail className="w-4 h-4" />
+                mprc9125@gmail.com
+              </a>
+              <a href="tel:+918142943409" className="flex items-center gap-2 hover:text-primary transition-colors">
+                <Phone className="w-4 h-4" />
+                +91 8142943409
+              </a>
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4" />
+                Hyderabad, Telangana
+              </div>
+            </motion.div>
+
+            {/* Action Buttons */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="flex flex-wrap gap-4"
+            >
+              <motion.button
+                onClick={() => scrollTo("projects")}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-all card-shadow hover:shadow-lg glow"
+              >
+                View Projects
+              </motion.button>
+              <motion.button
+                onClick={() => scrollTo("contact")}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3 border border-border rounded-lg font-medium hover:bg-muted transition-all"
+              >
+                Contact Me
+              </motion.button>
+            </motion.div>
+
+            {/* Social Links */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.9 }}
+              className="flex gap-4"
+            >
+              <motion.a
+                href="https://github.com/pradyu25"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                className="p-3 border border-border rounded-lg hover:bg-muted hover:border-primary transition-all"
+                aria-label="GitHub"
+              >
+                <Github className="w-5 h-5" />
+              </motion.a>
+              <motion.a
+                href="https://www.linkedin.com/in/musunuri-pradyumna-ravi-chandra-a08500306/"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                className="p-3 border border-border rounded-lg hover:bg-muted hover:border-primary transition-all"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </motion.a>
+            </motion.div>
           </motion.div>
-        </motion.div>
 
-        {/* RIGHT IMAGE ORB — BIGGER VERSION */}
-<motion.div
-  initial={{ opacity: 0, scale: 0.85 }}
-  animate={{ opacity: 1, scale: 1 }}
-  transition={{ duration: 1, delay: 0.5 }}
-  className="relative hidden md:flex items-center justify-center"
->
-  {/* Glow — INCREASED SIZE */}
-  <motion.div
-    className="w-96 h-96 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 opacity-20 blur-3xl"
-    animate={{ scale: [1, 1.15, 1], rotate: [0, 180, 360] }}
-    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-  />
+          {/* Right Content - Profile Picture */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex justify-center order-1 lg:order-2"
+          >
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="relative group"
+            >
+              {/* Glow Effect */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-primary to-secondary rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
 
-  {/* Outer ring — INCREASED SIZE */}
-  <motion.div
-    className="absolute w-88 h-88 rounded-full border-2 border-cyan-400/30"
-    animate={{ rotate: 360 }}
-    transition={{ duration: 30, repeat: Infinity }}
-  />
+              {/* Image Container */}
+              <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-primary/20 group-hover:border-primary/50 transition-all duration-500 card-shadow-lg">
+                <motion.img
+                  src="/ravi.png"
+                  alt="Musunuri Pradyumna Ravi Chandra"
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.5 }}
+                />
 
-  {/* Inner ring — INCREASED SIZE */}
-  <motion.div
-    className="absolute w-68 h-68 rounded-full border-2 border-fuchsia-400/40"
-    animate={{ rotate: -360 }}
-    transition={{ duration: 20, repeat: Infinity }}
-  />
+                {/* Overlay gradient on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
 
-  {/* Profile Picture — INCREASED SIZE */}
-  <motion.div
-    whileHover={{ scale: 1.04 }}
-    className="absolute w-64 h-64 rounded-full overflow-hidden border border-cyan-400/60 shadow-lg bg-black/60"
-  >
-    <img
-      src="/ravi.png"
-      alt="Musunuri Pradyumna Ravi Chandra"
-      className="w-full h-full object-cover mix-blend-screen"
-    />
-  </motion.div>
-</motion.div>
-</div>
+              {/* Floating Badges */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1, duration: 0.5 }}
+                className="absolute -top-4 -right-4 px-4 py-2 bg-card border border-primary/30 rounded-xl card-shadow-lg"
+              >
+                <div className="text-sm font-bold text-primary">B.Tech CSE (AI & ML)</div>
+              </motion.div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        onClick={() => scrollTo("projects")}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        <ChevronDown className="w-8 h-8 text-cyan-400" />
-      </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.2, duration: 0.5 }}
+                className="absolute -bottom-4 -left-4 px-4 py-2 bg-card border border-secondary/30 rounded-xl card-shadow-lg"
+              >
+                <div className="text-sm font-bold text-secondary">10+ Projects</div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 }
