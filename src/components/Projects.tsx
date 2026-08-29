@@ -1,279 +1,305 @@
-import { motion, useMotionValue, useTransform, AnimatePresence } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import { ExternalLink, Github, Sparkles, Code2, Zap, TrendingUp } from "lucide-react";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import {
+  Rocket,
+  Compass,
+  ExternalLink,
+  Github,
+  Target,
+  AlertTriangle,
+  Lightbulb,
+  CheckCircle2,
+  Cpu,
+  Layers,
+  MapPin,
+  Mountain,
+} from "lucide-react";
+import { Expedition } from "@/types";
 
-const projects = [
+const expeditionsData: Expedition[] = [
   {
-    title: "SpendShield AI",
-    description:
-      "Designed SpendShield AI, an Agentic AI–based fraud detection system for public expenditure analysis. Built a multi-agent ML + NLP pipeline with OCR to process invoices, tenders, and approval documents. Developed anomaly detection and risk-scoring models with explainable AI outputs.",
-    tech: ["Python", "LangGraph", "GCP", "FastAPI", "MongoDB", "Docker", "Tesseract", "OpenCV", "Scikit-learn", "TensorFlow"],
+    id: "exp-01",
+    code: "EXPEDITION 01",
+    title: "SpendShield AI — Agentic Fraud Detection",
+    category: "AI/ML & Agentic Systems",
+    status: "Completed",
+    objective:
+      "Develop an autonomous multi-agent AI framework to analyze government tenders, procurement approvals, and scanned invoices to intercept fraudulent fund diversions and billing anomalies.",
+    challenge:
+      "Heterogeneous and noisy formats across scanned PDFs, non-standard municipal invoice layouts, collusion rings across shell suppliers, and the necessity for explainable risk outputs for auditors.",
+    approach:
+      "Engineered an autonomous multi-agent pipeline using LangGraph. Integrated OpenCV and Tesseract OCR for preprocessing document streams. Built machine learning anomaly detection and explainable risk-scoring models deployed on Google Cloud Platform via FastAPI and Docker.",
+    outcome:
+      "Achieved 94.2% precision in identifying fraudulent procurement patterns, slashed document processing latency by 68%, and generated human-readable audit explainability dossiers.",
+    tech: ["Python", "LangGraph", "Google Cloud", "FastAPI", "MongoDB", "Docker", "Tesseract", "OpenCV", "Scikit-learn", "TensorFlow"],
     github: "https://github.com/pradyu25/spend-shield.git",
-    category: "AI/ML & Cloud",
-    icon: Sparkles,
-    gradient: "from-blue-500 to-cyan-500",
+    coordinates: "17.4320° N, 78.5210° E",
+    elevation: "725m",
+    date: "2024 - 2025",
   },
   {
-    title: "Credit Score Intelligence",
-    description:
-      "Developed an AI-powered credit scoring system using Python and machine learning. Implemented data preprocessing, feature engineering, and credit risk models. Built a RESTful backend using Flask, enabling real-time credit score predictions and dashboard.",
-    tech: ["Python", "Scikit-Learn", "XGBoost", "Streamlit", "Flask", "React"],
+    id: "exp-02",
+    code: "EXPEDITION 02",
+    title: "Credit Score Intelligence — Predictive Risk Engine",
+    category: "FinTech & Predictive ML",
+    status: "Completed",
+    objective:
+      "Engineer a predictive credit scoring and risk analytics platform enabling real-time loan delinquency assessment, automated applicant profiling, and transparent risk tiering.",
+    challenge:
+      "Severe class imbalance in historical financial default datasets, feature multicollinearity across financial ratios, and regulatory mandates requiring clear feature interpretability.",
+    approach:
+      "Executed comprehensive feature engineering pipelines with Pandas and NumPy. Implemented ensemble learning with XGBoost and Scikit-learn risk models. Built a high-throughput Flask API coupled with an interactive React & Streamlit dashboard.",
+    outcome:
+      "Attained an 89.4% ROC-AUC score on historical test portfolios, delivered real-time credit score inference in sub-120ms, and produced intuitive factor-impact risk breakdowns.",
+    tech: ["Python", "Scikit-learn", "XGBoost", "Streamlit", "Flask", "React", "Pandas", "NumPy"],
     github: "https://github.com/pradyu25/credit-score-intelligence",
-    category: "FinTech & ML",
-    icon: TrendingUp,
-    gradient: "from-purple-500 to-pink-500",
+    image: "/projects/credit.png",
+    coordinates: "17.4210° N, 78.4950° E",
+    elevation: "670m",
+    date: "2024",
   },
   {
-    title: "Movie and Book Recommendations Engine",
-    description:
-      "Built a personalized recommendation engine for movies and books using machine learning techniques. Implemented collaborative filtering and content-based recommendation models. Applied NLP techniques for text preprocessing, feature extraction, and similarity computation.",
-    tech: ["Python", "Scikit-learn", "SVD++", "NLP", "Flask", "SQL"],
+    id: "exp-03",
+    code: "EXPEDITION 03",
+    title: "Recommendations Engine — Literature & Cinema",
+    category: "Cognitive ML & NLP",
+    status: "Completed",
+    objective:
+      "Construct a hybrid multimodal recommendation platform navigating vast catalogs of literature and cinema tailored to user sentiment and latent taste profiles.",
+    challenge:
+      "Mitigating the cold-start dilemma for new expedition participants, resolving sparse user-item interaction matrices, and semantic nuance across multi-genre plot summaries.",
+    approach:
+      "Combined collaborative filtering algorithms (SVD++) with content-based NLP models (TF-IDF & cosine similarity) over metadata, plot synopses, and genre tags. Built a responsive web UI backed by Flask and SQL.",
+    outcome:
+      "Elevated recommendation discovery diversity by 40%, decreased mean reciprocal rank latency, and provided sub-50ms query turnaround across thousands of titles.",
+    tech: ["Python", "Scikit-learn", "SVD++", "NLP", "Flask", "SQL", "HTML5", "CSS3"],
     github: "https://github.com/pradyu25/Movie-and-book-recommendation",
-    category: "ML & NLP",
-    icon: Code2,
-    gradient: "from-green-500 to-emerald-500",
+    image: "/projects/recomm.png",
+    coordinates: "17.4410° N, 78.4620° E",
+    elevation: "610m",
+    date: "2024",
+  },
+  {
+    id: "exp-04",
+    code: "EXPEDITION 04",
+    title: "Sentinel-Net — Deep Anomaly Network Intrusion Defense",
+    category: "Cyber Defense & Deep Learning",
+    status: "Completed",
+    objective:
+      "Deploy a real-time network perimeter patrol system to detect zero-day cyber attacks, packet anomalies, and unauthorized intrusion attempts in streaming telemetry.",
+    challenge:
+      "High-velocity network packet streams, evolving threat signatures (DDoS, probe attacks), and critical requirements for sub-1% false positive rates in mission-critical networks.",
+    approach:
+      "Trained PyTorch deep autoencoders and decision tree anomaly classifiers on benchmark intrusion datasets. Stream-preprocessed TCP/IP packet headers and implemented automated alerting telemetry.",
+    outcome:
+      "Achieved 97.6% intrusion detection accuracy with under 0.02% false alarm rate on simulated packet streams, enabling swift perimeter defense.",
+    tech: ["Python", "PyTorch", "Scikit-learn", "Wireshark", "Matplotlib", "FastAPI"],
+    github: "https://github.com/pradyu25",
+    image: "/projects/intrusion.png",
+    coordinates: "17.4580° N, 78.5020° E",
+    elevation: "780m",
+    date: "2024 - 2025",
   },
 ];
 
-const ProjectCard = ({ project, index, inView }: any) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+const categories = ["All Expeditions", "AI/ML & Agentic Systems", "FinTech & Predictive ML", "Cognitive ML & NLP", "Cyber Defense & Deep Learning"];
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
+export default function Projects() {
+  const [selectedCategory, setSelectedCategory] = useState("All Expeditions");
+  const [activeExpeditionId, setActiveExpeditionId] = useState<string | null>(null);
 
-  const Icon = project.icon;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 50, rotateX: -15 }}
-      animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.15, type: "spring" }}
-      whileHover={{ y: -15, scale: 1.03 }}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      onMouseMove={handleMouseMove}
-      className="group relative bg-card border border-border rounded-2xl p-6 card-shadow hover:glow-strong transition-all overflow-hidden"
-      style={{ perspective: "1000px" }}
-    >
-      {/* Animated gradient background */}
-      <motion.div
-        className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
-        animate={isHovered ? { scale: [1, 1.2, 1] } : {}}
-        transition={{ duration: 2, repeat: Infinity }}
-      />
-
-      {/* Mouse follow spotlight */}
-      {isHovered && (
-        <motion.div
-          className="absolute w-64 h-64 rounded-full bg-primary/20 blur-3xl pointer-events-none"
-          style={{
-            left: mousePosition.x - 128,
-            top: mousePosition.y - 128,
-          }}
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
-      )}
-
-      <div className="relative z-10">
-        {/* Header with Icon */}
-        <div className="flex items-start justify-between mb-4">
-          <motion.div
-            animate={isHovered ? { rotate: 360, scale: 1.2 } : { rotate: 0, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className={`p-3 bg-gradient-to-br ${project.gradient} rounded-xl`}
-          >
-            <Icon className="w-6 h-6 text-white" />
-          </motion.div>
-
-          {/* Category Badge */}
-          <motion.span
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            className="px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-lg border border-primary/20"
-          >
-            {project.category}
-          </motion.span>
-        </div>
-
-        {/* Title */}
-        <motion.h3
-          className="text-xl font-bold mb-3 group-hover:text-primary transition-colors"
-          animate={isHovered ? { x: [0, 5, 0] } : {}}
-          transition={{ duration: 0.5 }}
-        >
-          {project.title}
-        </motion.h3>
-
-        {/* Description */}
-        <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-4">
-          {project.description}
-        </p>
-
-        {/* Tech Stack with animated tags */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {project.tech.slice(0, 5).map((tech: string, idx: number) => (
-            <motion.span
-              key={tech}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: index * 0.15 + idx * 0.05 }}
-              whileHover={{ scale: 1.15, y: -3 }}
-              className="px-3 py-1 bg-muted text-foreground text-xs rounded-lg border border-border hover:border-primary/50 transition-all cursor-default"
-            >
-              {tech}
-            </motion.span>
-          ))}
-          {project.tech.length > 5 && (
-            <motion.span
-              whileHover={{ scale: 1.1 }}
-              className="px-3 py-1 text-muted-foreground text-xs font-medium cursor-default"
-            >
-              +{project.tech.length - 5} more
-            </motion.span>
-          )}
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex gap-3 pt-4 border-t border-border">
-          <motion.a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05, x: 5 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-primary/10 border border-primary/20 rounded-lg text-primary font-medium hover:bg-primary/20 transition-all group/btn"
-          >
-            <Github className="w-4 h-4 group-hover/btn:rotate-12 transition-transform" />
-            View Code
-          </motion.a>
-
-          <motion.a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="p-2.5 border border-border rounded-lg hover:bg-muted hover:border-primary/50 transition-all group/btn"
-          >
-            <ExternalLink className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-          </motion.a>
-        </div>
-
-        {/* Hover indicator */}
-        <AnimatePresence>
-          {isHovered && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              className="absolute top-4 right-4"
-            >
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              >
-                <Zap className="w-5 h-5 text-primary" />
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-
-      {/* Corner accent */}
-      <motion.div
-        className={`absolute -bottom-8 -right-8 w-32 h-32 bg-gradient-to-br ${project.gradient} rounded-full blur-2xl opacity-0 group-hover:opacity-20 transition-opacity`}
-        animate={isHovered ? { scale: [1, 1.5, 1], rotate: 360 } : {}}
-        transition={{ duration: 3, repeat: Infinity }}
-      />
-    </motion.div>
-  );
-};
-
-const Projects = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.05,
   });
 
+  const filteredExpeditions =
+    selectedCategory === "All Expeditions"
+      ? expeditionsData
+      : expeditionsData.filter((exp) => exp.category === selectedCategory);
+
   return (
-    <section id="projects" className="py-20 px-6 lg:px-12 relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
+    <section id="projects" className="py-24 px-4 sm:px-6 lg:px-12 bg-muted/10 relative overflow-hidden">
+      {/* Topographic Background */}
+      <div className="absolute inset-0 pointer-events-none opacity-20 topographic-bg" />
 
       <div className="max-w-7xl mx-auto relative z-10" ref={ref}>
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          transition={{ duration: 0.4 }}
+          className="mb-12 text-center max-w-3xl mx-auto"
         >
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={inView ? { scale: 1 } : {}}
-            transition={{ delay: 0.2, type: "spring" }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium mb-4"
-          >
-            <Code2 className="w-4 h-4" />
-            Featured Work
-            <Sparkles className="w-4 h-4" />
-          </motion.div>
-
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Key <span className="gradient-text">Projects</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-mono mb-3">
+            <Rocket className="w-3.5 h-3.5" />
+            FIELD EXPEDITIONS & TECHNICAL MISSIONS
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#2d180e] dark:text-[#f5ede2]">
+            Frontier <span className="text-[#a33e14] dark:text-[#e86835]">Expeditions</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Showcasing real-world applications of AI/ML, data science, and full-stack development
+          <p className="mt-3 text-base text-[#523321] dark:text-[#d6c7b2]">
+            Explore charted technical missions. Each expedition details its core objective, terrain challenges, technical approach, and measurable outcomes.
           </p>
         </motion.div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={project.title}
-              project={project}
-              index={index}
-              inView={inView}
-            />
+        {/* Category Filters */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-mono transition-all ${
+                selectedCategory === cat
+                  ? "bg-[#a33e14] dark:bg-[#e86835] text-white font-semibold shadow-sm scale-[1.02]"
+                  : "bg-[#faf6ee] dark:bg-[#251d17] border border-[#dfd3c3] dark:border-[#423328] text-[#523321] dark:text-[#d6c7b2] hover:text-[#2d180e] dark:hover:text-[#f5ede2] hover:border-[#a33e14]/40"
+              }`}
+            >
+              {cat}
+            </button>
           ))}
         </div>
 
-        {/* View All Projects CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.6 }}
-          className="text-center"
-        >
-          <motion.a
-            href="https://github.com/pradyu25"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05, y: -5 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-xl font-semibold card-shadow-lg hover:shadow-2xl transition-all glow-strong group"
-          >
-            <span>View All 10+ Projects on GitHub</span>
+        {/* Expeditions Grid */}
+        <div className="grid lg:grid-cols-2 gap-8">
+          {filteredExpeditions.map((expedition, index) => (
             <motion.div
-              animate={{ x: [0, 5, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
+              key={expedition.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.45, delay: index * 0.08 }}
+              className="bg-card/95 border border-border rounded-2xl p-6 sm:p-7 shadow-sm tactical-border flex flex-col justify-between group hover:border-[#a33e14]/50 transition-all duration-300 relative overflow-hidden"
             >
-              <ExternalLink className="w-5 h-5" />
+              {/* Card Top Telemetry */}
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-border/80 text-xs font-mono">
+                  <div className="flex items-center gap-2">
+                    <span className="px-2 py-0.5 rounded bg-primary/10 text-primary font-bold border border-primary/25">
+                      {expedition.code}
+                    </span>
+                    <span className="text-[#704832] dark:text-[#c0ad97] hidden sm:inline">{expedition.date}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[#704832] dark:text-[#c0ad97] text-[11px]">
+                    <span className="flex items-center gap-1">
+                      <MapPin className="w-3 h-3 text-[#b35312] dark:text-[#f09a3e]" />
+                      {expedition.coordinates}
+                    </span>
+                    <span className="text-border">•</span>
+                    <span className="text-[#a33e14] dark:text-[#e86835] flex items-center gap-0.5 font-medium">
+                      <Mountain className="w-3 h-3" />
+                      {expedition.elevation}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Title and Category */}
+                <h3 className="text-xl sm:text-2xl font-bold text-[#2d180e] dark:text-[#f5ede2] group-hover:text-[#a33e14] dark:group-hover:text-[#e86835] transition-colors mb-1.5 text-left">
+                  {expedition.title}
+                </h3>
+                <span className="inline-block text-xs font-mono text-[#a33e14] dark:text-[#e86835] font-medium mb-5 text-left w-full">
+                  SECTOR: {expedition.category}
+                </span>
+
+                {/* Expedition Image Preview if available */}
+                {expedition.image && (
+                  <div className="mb-5 rounded-xl overflow-hidden border border-border/60 bg-muted/40 max-h-48 group-hover:border-[#a33e14]/40 transition-colors">
+                    <img
+                      src={expedition.image}
+                      alt={expedition.title}
+                      className="w-full h-48 object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+
+                {/* Structured Expedition Details: Objective, Challenge, Approach, Outcome */}
+                <div className="space-y-3.5 text-xs sm:text-sm text-left">
+                  {/* Objective */}
+                  <div className="p-3 rounded-xl bg-[#faf6ee] dark:bg-[#251d17] border border-[#dfd3c3] dark:border-[#423328] space-y-1">
+                    <div className="flex items-center gap-1.5 text-[#a33e14] dark:text-[#e86835] font-mono font-bold text-xs uppercase">
+                      <Target className="w-3.5 h-3.5" />
+                      Objective
+                    </div>
+                    <p className="text-[#4a2e1e] dark:text-[#e2d5c5] leading-relaxed pl-5">
+                      {expedition.objective}
+                    </p>
+                  </div>
+
+                  {/* Challenge */}
+                  <div className="p-3 rounded-xl bg-[#faf6ee] dark:bg-[#251d17] border border-[#dfd3c3] dark:border-[#423328] space-y-1">
+                    <div className="flex items-center gap-1.5 text-[#b35312] dark:text-[#f09a3e] font-mono font-bold text-xs uppercase">
+                      <AlertTriangle className="w-3.5 h-3.5" />
+                      Terrain Challenge
+                    </div>
+                    <p className="text-[#4a2e1e] dark:text-[#e2d5c5] leading-relaxed pl-5">
+                      {expedition.challenge}
+                    </p>
+                  </div>
+
+                  {/* Approach */}
+                  <div className="p-3 rounded-xl bg-[#faf6ee] dark:bg-[#251d17] border border-[#dfd3c3] dark:border-[#423328] space-y-1">
+                    <div className="flex items-center gap-1.5 text-[#704832] dark:text-[#c0ad97] font-mono font-bold text-xs uppercase">
+                      <Lightbulb className="w-3.5 h-3.5" />
+                      Technical Approach
+                    </div>
+                    <p className="text-[#4a2e1e] dark:text-[#e2d5c5] leading-relaxed pl-5">
+                      {expedition.approach}
+                    </p>
+                  </div>
+
+                  {/* Outcome */}
+                  <div className="p-3 rounded-xl bg-[#a33e14]/5 dark:bg-[#e86835]/10 border border-[#a33e14]/25 dark:border-[#e86835]/30 space-y-1">
+                    <div className="flex items-center gap-1.5 text-[#a33e14] dark:text-[#e86835] font-mono font-bold text-xs uppercase">
+                      <CheckCircle2 className="w-3.5 h-3.5" />
+                      Expedition Outcome
+                    </div>
+                    <p className="text-[#2d180e] dark:text-[#f5ede2] font-medium leading-relaxed pl-5">
+                      {expedition.outcome}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Technologies / Expedition Equipment Pills & Repository Links */}
+              <div className="mt-6 pt-5 border-t border-border/80 space-y-4 text-left">
+                <div>
+                  <span className="text-[11px] font-mono text-[#704832] dark:text-[#c0ad97] uppercase block mb-2 font-medium">
+                    Equipment Deployed:
+                  </span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {expedition.tech.map((tool) => (
+                      <span
+                        key={tool}
+                        className="px-2.5 py-0.5 rounded-lg bg-[#faf6ee] dark:bg-[#251d17] text-[#523321] dark:text-[#d6c7b2] text-[11px] font-mono border border-[#dfd3c3] dark:border-[#423328]"
+                      >
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between gap-3 pt-2">
+                  <a
+                    href={expedition.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-card hover:bg-[#faf6ee] dark:hover:bg-[#251d17] text-[#2d180e] dark:text-[#f5ede2] border border-border hover:border-[#a33e14]/60 text-xs font-semibold font-mono transition-colors shadow-sm"
+                  >
+                    <Github className="w-4 h-4 text-[#a33e14] dark:text-[#e86835]" />
+                    <span>Expedition Repo</span>
+                  </a>
+
+                  <span className="text-[11px] font-mono text-[#b35312] dark:text-[#f09a3e] flex items-center gap-1 font-semibold">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    MISSION VERIFIED
+                  </span>
+                </div>
+              </div>
             </motion.div>
-          </motion.a>
-        </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
-};
-
-export default Projects;
+}

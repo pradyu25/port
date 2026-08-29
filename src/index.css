@@ -2,76 +2,155 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Professional Dark Portfolio Design System */
+/* Pleasant & Cloudy Expedition Design System */
 
 @layer base {
   :root {
-    /* Light Theme */
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    /* Light Explorer Theme with Mud Brown and Dark Copper */
+    --background: 38 42% 97%; /* #faf7f2 - warm, clean luminous light background */
+    --foreground: 22 62% 14%; /* #3a1c0e - rich deep mud brown */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card: 38 36% 99%; /* #fffefb - crisp light card with warm parchment undertone */
+    --card-foreground: 22 62% 14%; /* #3a1c0e - mud brown */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover: 38 36% 99%;
+    --popover-foreground: 22 62% 14%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 18 78% 36%; /* #a33e14 - deep rich dark copper */
+    --primary-foreground: 38 40% 98%;
 
-    --secondary: 199 89% 48%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 28 85% 38%; /* #b35312 - warm amber copper */
+    --secondary-foreground: 38 40% 98%;
 
-    --accent: 199 89% 48%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 20 55% 42%; /* #a64d25 - burnished dark copper */
+    --accent-foreground: 38 40% 98%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 36 30% 92%; /* #ede6dc - warm light buff */
+    --muted-foreground: 22 38% 30%; /* #694432 - deep mud brown muted, crisp readability */
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 38 40% 98%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 221 83% 53%;
+    --border: 28 26% 82%; /* #ddd2c2 - warm sand/copper border */
+    --input: 28 26% 84%;
+    --ring: 18 78% 36%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
 
   .dark {
-    /* Dark Theme with Blueish Accent */
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
+    /* Fallback dark theme */
+    --background: 24 24% 11%;
+    --foreground: 36 35% 95%;
 
-    --card: 217 33% 17%;
-    --card-foreground: 210 40% 98%;
+    --card: 24 22% 15%;
+    --card-foreground: 36 35% 95%;
 
-    --popover: 217 33% 17%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 24 22% 15%;
+    --popover-foreground: 36 35% 95%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 20 80% 55%;
+    --primary-foreground: 24 24% 11%;
 
-    --secondary: 199 89% 48%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 34 85% 54%;
+    --secondary-foreground: 24 24% 11%;
 
-    --accent: 199 89% 48%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 20 60% 62%;
+    --accent-foreground: 24 24% 11%;
 
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 24 18% 20%;
+    --muted-foreground: 32 20% 72%;
 
-    --destructive: 0 63% 31%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217 33% 24%;
-    --input: 217 33% 17%;
-    --ring: 224 76% 48%;
+    --border: 24 18% 25%;
+    --input: 24 18% 22%;
+    --ring: 20 80% 55%;
+  }
+}
+
+@layer utilities {
+  /* Visible Cartographic Map Background Patterns in Copper & Mud Brown */
+  .map-grid-bg {
+    background-color: transparent;
+    background-image: 
+      radial-gradient(rgba(163, 62, 20, 0.16) 1.5px, transparent 1.5px),
+      linear-gradient(to right, rgba(140, 80, 45, 0.10) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(140, 80, 45, 0.10) 1px, transparent 1px);
+    background-size: 28px 28px, 56px 56px, 56px 56px;
+  }
+
+  .topographic-bg {
+    background-color: transparent;
+    background-image: 
+      radial-gradient(rgba(163, 62, 20, 0.14) 1.5px, transparent 1.5px),
+      linear-gradient(to right, rgba(120, 65, 30, 0.09) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(120, 65, 30, 0.09) 1px, transparent 1px);
+    background-size: 36px 36px, 72px 72px, 72px 72px;
+  }
+
+  .contour-lines {
+    background-image: 
+      radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(163, 62, 20, 0.15) 41%, transparent 42%),
+      radial-gradient(ellipse at 30% 70%, transparent 35%, rgba(179, 83, 18, 0.13) 36%, transparent 37%),
+      radial-gradient(ellipse at 80% 30%, transparent 45%, rgba(135, 60, 25, 0.14) 46%, transparent 47%);
+  }
+
+  /* Distinct Visible Surveyor Background Watermark */
+  .visible-surveyor-pattern {
+    background-image:
+      radial-gradient(circle at 15% 25%, rgba(163, 62, 20, 0.08) 0%, transparent 35%),
+      radial-gradient(circle at 85% 75%, rgba(179, 83, 18, 0.08) 0%, transparent 35%),
+      linear-gradient(to right, rgba(140, 80, 45, 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(140, 80, 45, 0.07) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+  }
+
+  /* Cartographic Expedition Card */
+  .expedition-card {
+    position: relative;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .expedition-card:hover {
+    box-shadow: 0 10px 25px -5px rgba(58, 28, 14, 0.10), 0 0 12px rgba(163, 62, 20, 0.12);
+  }
+
+  /* Map Survey Markings */
+  .tactical-border {
+    position: relative;
+  }
+  .tactical-border::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid hsl(var(--primary));
+    border-left: 2px solid hsl(var(--primary));
+    pointer-events: none;
+    border-top-left-radius: 4px;
+  }
+  .tactical-border::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    width: 10px;
+    height: 10px;
+    border-bottom: 2px solid hsl(var(--secondary));
+    border-right: 2px solid hsl(var(--secondary));
+    pointer-events: none;
+    border-bottom-right-radius: 4px;
   }
 }
 
 @layer base {
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
   * {
     @apply border-border;
@@ -79,9 +158,9 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     overflow-x: hidden;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.4s ease, color 0.4s ease;
   }
 
   h1,
@@ -90,7 +169,7 @@
   h4,
   h5,
   h6 {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 700;
   }
 
@@ -99,7 +178,7 @@
     font-family: 'JetBrains Mono', monospace;
   }
 
-  /* Custom Scrollbar */
+  /* Custom Scrollbar styled for Expedition Parchment */
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -110,12 +189,12 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--primary));
+    background: hsl(var(--primary) / 0.5);
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--primary) / 0.8);
+    background: hsl(var(--primary));
   }
 }
 
@@ -125,19 +204,19 @@
   }
 
   .card-shadow {
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -2px rgba(0, 0, 0, 0.06);
   }
 
   .card-shadow-lg {
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+    box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.15), 0 4px 10px -3px rgba(0, 0, 0, 0.1);
   }
 
   .glow {
-    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+    box-shadow: 0 0 24px hsl(var(--primary) / 0.25);
   }
 
-  .glow-strong {
-    box-shadow: 0 0 30px hsl(var(--primary) / 0.5);
+  .glow-amber {
+    box-shadow: 0 0 24px hsl(var(--secondary) / 0.25);
   }
 
   .smooth-transition {

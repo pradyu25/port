@@ -1,194 +1,218 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Sparkles, Target, Rocket, Zap, Code2, Brain, TrendingUp, FileText } from "lucide-react";
+import {
+  Compass,
+  Brain,
+  Shield,
+  Code2,
+  Terminal,
+  FileText,
+  MapPin,
+  Sparkles,
+  Target,
+  Rocket,
+  Wrench,
+  TrendingUp,
+} from "lucide-react";
 
-const highlights = [
-    {
-        icon: Brain,
-        title: "AI/ML Specialist",
-        description: "Deep expertise in machine learning, NLP, and intelligent systems",
-    },
-    {
-        icon: Code2,
-        title: "Full-Stack Developer",
-        description: "Proficient in building end-to-end scalable applications",
-    },
-    {
-        icon: TrendingUp,
-        title: "Data-Driven",
-        description: "Strong analytical skills with focus on actionable insights",
-    },
+const explorerTraits = [
+  {
+    icon: Brain,
+    title: "Algorithmic Navigation",
+    pouch: "Cognitive Engine",
+    description: "Deep mathematical intuition in neural networks, NLP vector spaces, and loss landscapes.",
+  },
+  {
+    icon: Shield,
+    title: "Autonomous Agent Architectures",
+    pouch: "Multi-Agent System",
+    description: "Designing self-correcting LangGraph agent workflows for automated audits and fraud detection.",
+  },
+  {
+    icon: Rocket,
+    title: "Field Deployment & Scalability",
+    pouch: "Basecamp Ops",
+    description: "Containerizing machine learning models with FastAPI, Docker, and Google Cloud Platform.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Predictive Risk & Analytics",
+    pouch: "Terrain Forensics",
+    description: "Engineering robust credit risk models and anomaly classifiers with explainable AI outputs.",
+  },
 ];
 
-const About = () => {
-    const [ref, inView] = useInView({
-        triggerOnce: true,
-        threshold: 0.1,
-    });
+export default function About() {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
 
-    return (
-        <section id="about" className="py-20 px-6 lg:px-12 relative overflow-hidden">
-            {/* Background decoration */}
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
+  const smoothScrollTo = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 76;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
 
-            <div className="max-w-6xl mx-auto relative z-10" ref={ref}>
-                {/* Section Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6 }}
-                    className="mb-16 text-center"
-                >
-                    <motion.div
-                        initial={{ scale: 0 }}
-                        animate={inView ? { scale: 1 } : {}}
-                        transition={{ delay: 0.2, type: "spring" }}
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium mb-4"
-                    >
-                        <Target className="w-4 h-4" />
-                        About Me
-                        <Sparkles className="w-4 h-4" />
-                    </motion.div>
+  return (
+    <section id="about" className="py-24 px-4 sm:px-6 lg:px-12 relative overflow-hidden">
+      {/* Topographic Background */}
+      <div className="absolute inset-0 pointer-events-none opacity-20 contour-lines" />
 
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                        Passionate About <span className="gradient-text">Innovation</span>
-                    </h2>
-                </motion.div>
+      <div className="max-w-7xl mx-auto relative z-10" ref={ref}>
+        {/* Section Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="mb-14 text-center max-w-3xl mx-auto"
+        >
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-mono mb-3">
+            <Compass className="w-3.5 h-3.5 text-primary" />
+            EXPLORER PROFILE & DOSSIER
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#2d180e] dark:text-[#f5ede2]">
+            Mapping Frontiers in <span className="text-[#a33e14] dark:text-[#e86835]">AI & Intelligent Systems</span>
+          </h2>
+          <p className="mt-3 text-base text-[#523321] dark:text-[#d6c7b2]">
+            Undergraduate researcher, autonomous system builder, and data science pioneer navigating complex technical terrain.
+          </p>
+        </motion.div>
 
-                {/* Main Content */}
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    {/* Left: Story */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        animate={inView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        className="space-y-6"
-                    >
-                        <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
-                            <motion.p
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={inView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ delay: 0.3 }}
-                            >
-                                I&apos;m a <span className="text-foreground font-semibold">results-driven AI/ML and Data Science undergraduate</span> with a passion for transforming complex problems into elegant, scalable solutions.
-                            </motion.p>
+        {/* Two-Column Explorer Dossier */}
+        <div className="grid lg:grid-cols-12 gap-10 items-start">
+          {/* Left Column: Explorer Narrative & Mission (7 Columns) */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="lg:col-span-7 space-y-6"
+          >
+            {/* Dossier Card */}
+            <div className="bg-card/95 border border-border rounded-2xl p-6 sm:p-8 shadow-sm tactical-border relative space-y-5">
+              <div className="flex items-center justify-between border-b border-border/80 pb-3 text-xs font-mono text-[#704832] dark:text-[#c0ad97]">
+                <span className="flex items-center gap-2 text-[#a33e14] dark:text-[#e86835] font-semibold">
+                  <Terminal className="w-4 h-4" />
+                  FIELD DOSSIER: PRC-HYD-25
+                </span>
+                <span className="text-[#b35312] dark:text-[#f09a3e] font-medium">CLASSIFICATION: EXPLORER</span>
+              </div>
 
-                            <motion.p
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={inView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ delay: 0.4 }}
-                            >
-                                My journey in technology is fueled by curiosity and a drive to build <span className="text-foreground font-semibold">intelligent systems that create real-world impact</span>. From fraud detection systems to credit scoring models, I thrive on challenges that push the boundaries of what&apos;s possible.
-                            </motion.p>
+              <div className="space-y-4 text-[#4a2e1e] dark:text-[#d6c7b2] text-sm sm:text-base leading-relaxed">
+                <p>
+                  I am <strong className="text-[#2d180e] dark:text-[#f5ede2] font-bold">Musunuri Pradyumna Ravi Chandra</strong>,
+                  an AI/ML undergraduate at Nalla Narasimha Reddy Group of Institutions in Hyderabad. I treat complex data
+                  ecosystems like undiscovered landscapes—charting patterns, traversing high-dimensional manifolds, and
+                  discovering signals where others see noise.
+                </p>
 
-                            <motion.p
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={inView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ delay: 0.5 }}
-                            >
-                                I&apos;m seeking opportunities to contribute my <span className="text-foreground font-semibold">advanced modeling, analytics, and automation skills</span> to develop high-impact, data-driven solutions in a dynamic environment.
-                            </motion.p>
-                        </div>
+                <p>
+                  My recent work has centered around <strong className="text-[#2d180e] dark:text-[#f5ede2] font-semibold">Agentic AI and FinTech intelligence</strong>.
+                  Through systems like <em className="text-[#a33e14] dark:text-[#e86835] font-semibold">SpendShield AI</em>, I designed multi-agent pipelines capable
+                  of reading unstructured procurement documents, validating invoice authenticity, and flagging fiscal anomalies with explainable AI outputs.
+                </p>
 
-                        {/* CTA */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={inView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ delay: 0.6 }}
-                            className="flex flex-wrap gap-4 pt-4"
-                        >
-                            <motion.a
-                                href="#contact"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium glow transition-all"
-                            >
-                                <Rocket className="w-5 h-5" />
-                                Let&apos;s Connect
-                            </motion.a>
-                            <motion.a
-                                href="#projects"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="inline-flex items-center gap-2 px-6 py-3 border border-border rounded-lg font-medium hover:bg-muted transition-all"
-                            >
-                                View My Work
-                                <Zap className="w-5 h-5" />
-                            </motion.a>
-                            <motion.a
-                                href="/pradyumna.pdf"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="inline-flex items-center gap-2 px-6 py-3 border border-primary/30 bg-primary/5 rounded-lg font-medium hover:bg-primary/10 transition-all text-primary"
-                            >
-                                <FileText className="w-5 h-5" />
-                                View Resume
-                            </motion.a>
-                        </motion.div>
-                    </motion.div>
+                <p>
+                  Whether engineering high-precision credit risk predictors with XGBoost, building multimodal recommendation engines with SVD++, or
+                  deploying containerized APIs to Google Cloud Platform, I prioritize <strong className="text-[#2d180e] dark:text-[#f5ede2] font-semibold">measurable real-world impact</strong> and
+                  architectural resilience.
+                </p>
+              </div>
 
-                    {/* Right: Highlights */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        animate={inView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ duration: 0.6, delay: 0.3 }}
-                        className="space-y-6"
-                    >
-                        {highlights.map((highlight, index) => {
-                            const Icon = highlight.icon;
-                            return (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                                    transition={{ delay: 0.4 + index * 0.1 }}
-                                    whileHover={{ x: 10, scale: 1.02 }}
-                                    className="flex gap-4 p-6 bg-card border border-border rounded-xl card-shadow hover:glow transition-all group"
-                                >
-                                    <div className="shrink-0 p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                                        <Icon className="w-6 h-6 text-primary" />
-                                    </div>
-                                    <div>
-                                        <h3 className="font-bold text-lg mb-1 group-hover:text-primary transition-colors">
-                                            {highlight.title}
-                                        </h3>
-                                        <p className="text-muted-foreground text-sm">
-                                            {highlight.description}
-                                        </p>
-                                    </div>
-                                </motion.div>
-                            );
-                        })}
-
-                        {/* Stats */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={inView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ delay: 0.7 }}
-                            className="grid grid-cols-2 gap-4 pt-4"
-                        >
-                            {[
-                                { value: "10+", label: "Projects" },
-                                { value: "4", label: "Certifications" },
-                            ].map((stat, index) => (
-                                <motion.div
-                                    key={index}
-                                    whileHover={{ y: -5, scale: 1.05 }}
-                                    className="text-center p-4 bg-card border border-border rounded-xl card-shadow hover:glow transition-all"
-                                >
-                                    <div className="text-3xl font-bold gradient-text mb-1">{stat.value}</div>
-                                    <div className="text-xs text-muted-foreground font-medium">{stat.label}</div>
-                                </motion.div>
-                            ))}
-                        </motion.div>
-                    </motion.div>
+              {/* Explorer Coordinates & Mission Highlights */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-3 border-t border-border/70 text-xs font-mono">
+                <div className="p-3 bg-[#faf6ee] dark:bg-[#251d17] rounded-xl border border-[#dfd3c3] dark:border-[#423328]">
+                  <span className="text-[#704832] dark:text-[#c0ad97] block text-[10px]">BASE SECTOR</span>
+                  <span className="font-semibold text-[#2d180e] dark:text-[#f5ede2]">Hyderabad, IN</span>
                 </div>
-            </div>
-        </section>
-    );
-};
+                <div className="p-3 bg-[#faf6ee] dark:bg-[#251d17] rounded-xl border border-[#dfd3c3] dark:border-[#423328]">
+                  <span className="text-[#704832] dark:text-[#c0ad97] block text-[10px]">PRIMARY FOCUS</span>
+                  <span className="font-semibold text-[#a33e14] dark:text-[#e86835]">AI / Agentic ML</span>
+                </div>
+                <div className="p-3 bg-[#faf6ee] dark:bg-[#251d17] rounded-xl border border-[#dfd3c3] dark:border-[#423328] col-span-2 sm:col-span-1">
+                  <span className="text-[#704832] dark:text-[#c0ad97] block text-[10px]">RADAR STATUS</span>
+                  <span className="font-semibold text-[#b35312] dark:text-[#f09a3e]">Ready for Roles</span>
+                </div>
+              </div>
 
-export default About;
+              {/* Action Buttons */}
+              <div className="flex flex-wrap gap-3 pt-2">
+                <button
+                  onClick={() => smoothScrollTo("projects")}
+                  className="px-4 py-2.5 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground text-xs font-semibold flex items-center gap-2 transition-all"
+                >
+                  <Rocket className="w-3.5 h-3.5" />
+                  <span>Inspect Expeditions</span>
+                </button>
+                <button
+                  onClick={() => smoothScrollTo("skills")}
+                  className="px-4 py-2.5 rounded-xl bg-card hover:bg-muted text-foreground border border-border hover:border-primary/40 text-xs font-semibold flex items-center gap-2 transition-all"
+                >
+                  <Wrench className="w-3.5 h-3.5 text-primary" />
+                  <span>Check Equipment Kit</span>
+                </button>
+                <button
+                  onClick={() => smoothScrollTo("resume")}
+                  className="px-4 py-2.5 rounded-xl bg-secondary/10 hover:bg-secondary/20 text-secondary border border-secondary/30 text-xs font-semibold flex items-center gap-2 transition-all"
+                >
+                  <FileText className="w-3.5 h-3.5" />
+                  <span>Expedition Report</span>
+                </button>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Column: 4 Explorer Capabilities & Pillars (5 Columns) */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="lg:col-span-5 space-y-4"
+          >
+            <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-1 flex items-center gap-2">
+              <Target className="w-3.5 h-3.5 text-secondary" />
+              EXPLORER METHODOLOGIES & TRAITS
+            </div>
+
+            {explorerTraits.map((trait, idx) => {
+              const Icon = trait.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  whileHover={{ x: 4, scale: 1.01 }}
+                  className="p-4 rounded-xl bg-card border border-border hover:border-primary/50 transition-all shadow-md group relative"
+                >
+                  <div className="flex items-start gap-3.5">
+                    <div className="p-2.5 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors shrink-0">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="flex items-center justify-between gap-2 mb-1">
+                        <h3 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">
+                          {trait.title}
+                        </h3>
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-muted text-muted-foreground border border-border">
+                          {trait.pouch}
+                        </span>
+                      </div>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        {trait.description}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
