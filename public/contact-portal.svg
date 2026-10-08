@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 600" width="100%" height="100%">
+  <defs>
+    <radialGradient id="portalVoid" cx="72%" cy="46%" r="55%">
+      <stop offset="0%" stop-color="#fff8db" stop-opacity="0.95"/>
+      <stop offset="15%" stop-color="#f5d58f" stop-opacity="0.8"/>
+      <stop offset="30%" stop-color="#d49c3d" stop-opacity="0.6"/>
+      <stop offset="55%" stop-color="#3d2810" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#040505" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="portalCore" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#060708"/>
+      <stop offset="80%" stop-color="#0d0e10"/>
+      <stop offset="95%" stop-color="#ffd580"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </radialGradient>
+    <linearGradient id="portalRing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#ffe699"/>
+      <stop offset="50%" stop-color="#e5be6b"/>
+      <stop offset="75%" stop-color="#a46d1f"/>
+      <stop offset="100%" stop-color="#ffdf88"/>
+    </linearGradient>
+    <filter id="fireGlow">
+      <feGaussianBlur stdDeviation="7" result="blur1"/>
+      <feGaussianBlur stdDeviation="3" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Deep space background -->
+  <rect width="1440" height="600" fill="#040505"/>
+
+  <!-- Starry expanse -->
+  <g fill="#ffffff" opacity="0.65">
+    <circle cx="120" cy="80" r="1"/>
+    <circle cx="280" cy="120" r="0.8"/>
+    <circle cx="420" cy="70" r="1.3"/>
+    <circle cx="560" cy="110" r="0.9"/>
+    <circle cx="700" cy="60" r="1.1"/>
+    <circle cx="860" cy="130" r="0.7"/>
+    <circle cx="1250" cy="90" r="1.4" fill="#f5d58f"/>
+    <circle cx="1380" cy="140" r="0.8"/>
+    <circle cx="200" cy="220" r="1"/>
+    <circle cx="480" cy="260" r="0.7"/>
+  </g>
+
+  <!-- Massive Cosmic Portal Glow -->
+  <rect x="0" y="0" width="1440" height="600" fill="url(#portalVoid)"/>
+
+  <!-- Stargate Portal Ring (Right Side) -->
+  <g transform="translate(1040, 275)">
+    <!-- Aura rings -->
+    <circle cx="0" cy="0" r="230" fill="none" stroke="#e5be6b" stroke-width="0.8" opacity="0.15"/>
+    <circle cx="0" cy="0" r="210" fill="none" stroke="#e5be6b" stroke-width="1.2" opacity="0.25"/>
+    
+    <!-- Outer energy corona -->
+    <ellipse cx="0" cy="0" rx="195" ry="195" fill="none" stroke="#ffd980" stroke-width="2" opacity="0.5" filter="url(#fireGlow)"/>
+    <ellipse cx="0" cy="0" rx="180" ry="180" fill="none" stroke="url(#portalRing)" stroke-width="6" filter="url(#fireGlow)"/>
+    <ellipse cx="0" cy="0" rx="178" ry="178" fill="none" stroke="#ffffff" stroke-width="2.5" filter="url(#fireGlow)"/>
+
+    <!-- Inner vortex -->
+    <circle cx="0" cy="0" r="172" fill="url(#portalCore)"/>
+
+    <!-- Spark particles swirling around the ring -->
+    <g fill="#ffffff" filter="url(#fireGlow)">
+      <circle cx="-160" cy="-60" r="2.5"/>
+      <circle cx="150" cy="-70" r="3"/>
+      <circle cx="-120" cy="120" r="2"/>
+      <circle cx="110" cy="130" r="3"/>
+      <circle cx="-30" cy="-175" r="3.5" fill="#ffd980"/>
+      <circle cx="50" cy="170" r="2.5" fill="#ffd980"/>
+      <circle cx="-175" cy="20" r="2" fill="#ffd980"/>
+      <circle cx="172" cy="-10" r="3" fill="#ffeaa5"/>
+    </g>
+
+    <!-- Ray streams -->
+    <line x1="-180" y1="-50" x2="-260" y2="-70" stroke="#ffd580" stroke-width="1" opacity="0.5" filter="url(#fireGlow)"/>
+    <line x1="180" y1="-40" x2="270" y2="-60" stroke="#ffd580" stroke-width="1" opacity="0.5" filter="url(#fireGlow)"/>
+    <line x1="-140" y1="120" x2="-210" y2="180" stroke="#ffd580" stroke-width="1" opacity="0.4"/>
+    <line x1="130" y1="130" x2="220" y2="190" stroke="#ffd580" stroke-width="1" opacity="0.4"/>
+  </g>
+
+  <!-- Distant dark planetary mountains -->
+  <path d="M 0 450 Q 300 400 650 440 T 1100 420 T 1440 450 L 1440 600 L 0 600 Z" fill="#08090b" opacity="0.95"/>
+  <path d="M 0 480 Q 400 440 850 470 T 1440 480 L 1440 600 L 0 600 Z" fill="#040506"/>
+
+  <!-- Foreground Cliff Ridge where the Explorer stands -->
+  <path d="M 680 500 Q 950 460 1150 490 T 1440 500 L 1440 600 L 680 600 Z" fill="#060708"/>
+  <path d="M 850 510 L 1150 485 L 1440 510 L 1440 600 L 850 600 Z" fill="#030404"/>
+
+  <!-- Explorer Silhouette standing in awe before the glowing portal -->
+  <g transform="translate(1040, 435) scale(1.15)">
+    <!-- Shadow -->
+    <ellipse cx="0" cy="46" rx="16" ry="4" fill="#000000" opacity="0.8"/>
+    <!-- Boots & Legs -->
+    <line x1="-4" y1="28" x2="-5" y2="45" stroke="#040506" stroke-width="4.5"/>
+    <line x1="4" y1="28" x2="5" y2="45" stroke="#040506" stroke-width="4.5"/>
+    <!-- Torso & Explorer Suit -->
+    <ellipse cx="0" cy="18" rx="8" ry="14" fill="#040506"/>
+    <!-- Backpack -->
+    <rect x="-7" y="10" width="14" height="15" rx="3" fill="#060709" stroke="#f5d58f" stroke-width="0.4" opacity="0.7"/>
+    <!-- Arms resting at sides -->
+    <path d="M -8 10 L -12 26" stroke="#040506" stroke-width="3.5"/>
+    <path d="M 8 10 L 12 26" stroke="#040506" stroke-width="3.5"/>
+    <!-- Helmet -->
+    <circle cx="0" cy="4" r="7" fill="#08090c"/>
+    <!-- Visor reflecting golden portal glow -->
+    <ellipse cx="0" cy="3" rx="4" ry="3.5" fill="#ffeaa5" opacity="0.9" filter="url(#fireGlow)"/>
+  </g>
+</svg>

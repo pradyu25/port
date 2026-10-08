@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" width="100%" height="100%">
+  <defs>
+    <radialGradient id="spaceBg" cx="70%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#1f1810" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#0e0c0a" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#040505" stop-opacity="1"/>
+    </radialGradient>
+    <radialGradient id="moonGlow" cx="40%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#dedad0"/>
+      <stop offset="45%" stop-color="#696760"/>
+      <stop offset="85%" stop-color="#1e2020"/>
+      <stop offset="100%" stop-color="#08090a"/>
+    </radialGradient>
+    <filter id="amberGlow">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="600" height="360" fill="url(#spaceBg)"/>
+
+  <!-- Stars -->
+  <g fill="#ffffff" opacity="0.6">
+    <circle cx="80" cy="50" r="1"/>
+    <circle cx="160" cy="80" r="0.8"/>
+    <circle cx="280" cy="30" r="1.2"/>
+    <circle cx="450" cy="90" r="0.7"/>
+    <circle cx="560" cy="40" r="1.4"/>
+  </g>
+
+  <!-- Distant Celestial Moon on right -->
+  <g transform="translate(480, 110)">
+    <circle cx="0" cy="0" r="75" fill="url(#moonGlow)"/>
+    <path d="M -73 15 A 75 75 0 0 1 10 -74" fill="none" stroke="#f6ddb0" stroke-width="2" opacity="0.7" filter="url(#amberGlow)"/>
+    <ellipse cx="-15" cy="5" rx="72" ry="22" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.1" transform="rotate(-20)"/>
+  </g>
+
+  <!-- Dark rugged mountain silhouettes -->
+  <path d="M 0 250 Q 150 200 320 240 T 600 230 L 600 360 L 0 360 Z" fill="#08090a"/>
+  <path d="M 0 280 Q 200 250 400 270 T 600 290 L 600 360 L 0 360 Z" fill="#040505"/>
+
+  <!-- Floating Holographic Financial Dashboard UI (Left & Center) -->
+  <g transform="translate(45, 55)">
+    <!-- Main glass panel -->
+    <rect width="260" height="175" rx="6" fill="#0b0d0e" stroke="#e5c179" stroke-width="0.7" opacity="0.85"/>
+    <rect x="0" y="0" width="260" height="24" rx="6" fill="#131617" opacity="0.8"/>
+    <text x="12" y="16" fill="#e5c179" font-family="monospace" font-size="8" letter-spacing="1">CREDIT RISK INTELLIGENCE // XGBOOST</text>
+    <circle cx="245" cy="12" r="3" fill="#38ef7d"/>
+
+    <!-- Score dial & metrics -->
+    <g transform="translate(50, 75)">
+      <circle cx="0" cy="0" r="30" fill="none" stroke="#1f2426" stroke-width="5"/>
+      <path d="M -21 21 A 30 30 0 1 1 21 21" fill="none" stroke="#e5c179" stroke-width="5" filter="url(#amberGlow)"/>
+      <text x="0" y="4" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-weight="bold" font-size="13">785</text>
+      <text x="0" y="15" text-anchor="middle" fill="#99978d" font-family="monospace" font-size="6">EXCELLENT</text>
+    </g>
+
+    <g transform="translate(115, 50)">
+      <text x="0" y="12" fill="#7edbf0" font-family="monospace" font-size="7">DEFAULT PROBABILITY: 1.2%</text>
+      <text x="0" y="26" fill="#ffffff" font-family="monospace" font-size="7">SHAP IMPACT: TOP 5 FEAT</text>
+      <rect x="0" y="34" width="130" height="4" rx="2" fill="#1a1e20"/>
+      <rect x="0" y="34" width="105" height="4" rx="2" fill="#e5c179"/>
+      <rect x="0" y="44" width="130" height="4" rx="2" fill="#1a1e20"/>
+      <rect x="0" y="44" width="80" height="4" rx="2" fill="#38ef7d"/>
+      <rect x="0" y="54" width="130" height="4" rx="2" fill="#1a1e20"/>
+      <rect x="0" y="54" width="55" height="4" rx="2" fill="#00d2ff"/>
+    </g>
+
+    <!-- Predictive risk curve line graph -->
+    <g transform="translate(15, 125)">
+      <rect width="230" height="38" fill="#060708" rx="3" stroke="#232729" stroke-width="0.5"/>
+      <!-- Grid lines -->
+      <line x1="0" y1="12" x2="230" y2="12" stroke="#1a1d1e" stroke-width="0.5"/>
+      <line x1="0" y1="25" x2="230" y2="25" stroke="#1a1d1e" stroke-width="0.5"/>
+      <!-- Curves -->
+      <path d="M 10 30 Q 50 25 80 18 T 140 10 T 190 6 T 220 4" fill="none" stroke="#e5c179" stroke-width="1.6" filter="url(#amberGlow)"/>
+      <path d="M 10 32 Q 60 30 110 24 T 170 20 T 220 18" fill="none" stroke="#00e5ff" stroke-width="1" opacity="0.6"/>
+      <!-- Nodes -->
+      <circle cx="80" cy="18" r="2.5" fill="#e5c179"/>
+      <circle cx="140" cy="10" r="2.5" fill="#ffffff" filter="url(#amberGlow)"/>
+      <circle cx="190" cy="6" r="2.5" fill="#e5c179"/>
+    </g>
+  </g>
+
+  <!-- Secondary floating mini-card -->
+  <g transform="translate(320, 140)">
+    <rect width="115" height="85" rx="5" fill="#0c0e0f" stroke="#e5c179" stroke-width="0.5" opacity="0.8"/>
+    <text x="10" y="18" fill="#e5c179" font-family="monospace" font-size="7">FINANCIAL DATA STREAM</text>
+    <path d="M 10 45 L 30 55 L 50 35 L 75 42 L 95 28 L 105 32" fill="none" stroke="#38ef7d" stroke-width="1.2" filter="url(#amberGlow)"/>
+    <text x="10" y="70" fill="#dedbd1" font-family="monospace" font-size="6.5">STREAMLIT + REACT // FLASK</text>
+  </g>
+</svg>

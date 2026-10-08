@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" width="100%" height="100%">
+  <defs>
+    <radialGradient id="nightSky" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#1e180d" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#0e0c08" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#050504" stop-opacity="1"/>
+    </radialGradient>
+    <radialGradient id="domeGlow" cx="50%" cy="45%" r="45%">
+      <stop offset="0%" stop-color="#ffd27d" stop-opacity="0.45"/>
+      <stop offset="60%" stop-color="#e8bf72" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#050504" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="goldGlow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="600" height="360" fill="url(#nightSky)"/>
+  <rect width="600" height="360" fill="url(#domeGlow)"/>
+
+  <!-- Distant cosmic stars -->
+  <g fill="#f5d58f" opacity="0.65">
+    <circle cx="60" cy="40" r="1"/>
+    <circle cx="120" cy="70" r="0.8"/>
+    <circle cx="210" cy="30" r="1.3"/>
+    <circle cx="480" cy="45" r="1.1"/>
+    <circle cx="540" cy="80" r="0.9"/>
+    <circle cx="390" cy="25" r="0.7"/>
+  </g>
+
+  <!-- Golden Security Shield Hologram / Orbit Network -->
+  <g transform="translate(300, 160)">
+    <!-- Shield Outline -->
+    <path d="M 0 -110 Q 90 -90 120 -20 Q 120 70 0 125 Q -120 70 -120 -20 Q -90 -90 0 -110 Z" fill="none" stroke="#e5c179" stroke-width="1.2" opacity="0.5" filter="url(#goldGlow)"/>
+    <path d="M 0 -95 Q 75 -75 100 -15 Q 100 55 0 105 Q -100 55 -100 -15 Q -75 -75 0 -95 Z" fill="#e5c179" opacity="0.05"/>
+    <!-- Outer orbital ring -->
+    <ellipse cx="0" cy="0" rx="150" ry="50" fill="none" stroke="#f6ddb0" stroke-width="0.8" opacity="0.3" transform="rotate(-15)"/>
+    <!-- Security Nodes -->
+    <circle cx="-110" cy="-30" r="4" fill="#f5d58f" filter="url(#goldGlow)"/>
+    <circle cx="120" cy="10" r="3.5" fill="#f5d58f" filter="url(#goldGlow)"/>
+    <circle cx="0" cy="-110" r="4.5" fill="#ffffff" filter="url(#goldGlow)"/>
+  </g>
+
+  <!-- Neoclassical Grand Illuminated Capitol Dome -->
+  <g transform="translate(300, 220)">
+    <!-- Base podium -->
+    <rect x="-140" y="50" width="280" height="50" fill="#0d0e0e" stroke="#e5c179" stroke-width="0.6"/>
+    <!-- Columns row -->
+    <g stroke="#f5d58f" stroke-width="1.2" opacity="0.7">
+      <line x1="-120" y1="50" x2="-120" y2="10"/>
+      <line x1="-95" y1="50" x2="-95" y2="10"/>
+      <line x1="-70" y1="50" x2="-70" y2="10"/>
+      <line x1="-45" y1="50" x2="-45" y2="10"/>
+      <line x1="-20" y1="50" x2="-20" y2="10"/>
+      <line x1="5" y1="50" x2="5" y2="10"/>
+      <line x1="30" y1="50" x2="30" y2="10"/>
+      <line x1="55" y1="50" x2="55" y2="10"/>
+      <line x1="80" y1="50" x2="80" y2="10"/>
+      <line x1="105" y1="50" x2="105" y2="10"/>
+    </g>
+    <!-- Entablature / Pediment -->
+    <polygon points="-135,10 135,10 0,-15" fill="#121415" stroke="#e5c179" stroke-width="1"/>
+    <!-- Dome Drum -->
+    <rect x="-70" y="-55" width="140" height="40" fill="#101213" stroke="#e5c179" stroke-width="0.8"/>
+    <!-- Dome Arch -->
+    <path d="M -70 -55 Q -70 -135 0 -135 Q 70 -135 70 -55 Z" fill="#141718" stroke="#f6ddb0" stroke-width="1.4" filter="url(#goldGlow)"/>
+    <!-- Dome Ribs -->
+    <path d="M -45 -55 Q -40 -120 0 -135" fill="none" stroke="#e5c179" stroke-width="0.7" opacity="0.6"/>
+    <path d="M -20 -55 Q -15 -125 0 -135" fill="none" stroke="#e5c179" stroke-width="0.7" opacity="0.6"/>
+    <path d="M 20 -55 Q 15 -125 0 -135" fill="none" stroke="#e5c179" stroke-width="0.7" opacity="0.6"/>
+    <path d="M 45 -55 Q 40 -120 0 -135" fill="none" stroke="#e5c179" stroke-width="0.7" opacity="0.6"/>
+    <!-- Lantern & Spire -->
+    <rect x="-12" y="-155" width="24" height="20" fill="#1b1e20" stroke="#f6ddb0" stroke-width="0.8"/>
+    <line x1="0" y1="-155" x2="0" y2="-175" stroke="#f6ddb0" stroke-width="2" filter="url(#goldGlow)"/>
+    <circle cx="0" cy="-176" r="3.5" fill="#f5d58f" filter="url(#goldGlow)"/>
+  </g>
+
+  <!-- Floating Data streams & OCR Telemetry -->
+  <g transform="translate(60, 80)">
+    <rect width="110" height="65" rx="4" fill="#0c0e0f" stroke="#e5c179" stroke-width="0.5" opacity="0.75"/>
+    <text x="8" y="16" fill="#f5d58f" font-family="monospace" font-size="7" letter-spacing="1">AUDIT_AI AGENT // OCR</text>
+    <text x="8" y="32" fill="#c4c1b4" font-family="monospace" font-size="6.5">EXPENSE: $4.2M AUDITED</text>
+    <text x="8" y="44" fill="#c4c1b4" font-family="monospace" font-size="6.5">ANOMALIES: 0.04% DETECTED</text>
+    <text x="8" y="56" fill="#38ef7d" font-family="monospace" font-size="6.5">STATUS: SAFE SHIELD ACTIVE</text>
+  </g>
+
+  <g transform="translate(430, 80)">
+    <rect width="120" height="65" rx="4" fill="#0c0e0f" stroke="#e5c179" stroke-width="0.5" opacity="0.75"/>
+    <text x="8" y="16" fill="#f5d58f" font-family="monospace" font-size="7" letter-spacing="1">LANGGRAPH ORCHESTRATION</text>
+    <path d="M 12 40 L 35 28 L 60 45 L 85 30 L 108 42" fill="none" stroke="#e5c179" stroke-width="1" filter="url(#goldGlow)"/>
+    <circle cx="35" cy="28" r="2.5" fill="#f5d58f"/>
+    <circle cx="60" cy="45" r="2.5" fill="#f5d58f"/>
+    <circle cx="85" cy="30" r="2.5" fill="#f5d58f"/>
+    <text x="8" y="58" fill="#aaa89e" font-family="monospace" font-size="6">MULTI-AGENT WORKFLOW OK</text>
+  </g>
+
+  <!-- Forefront dark base floor -->
+  <rect x="0" y="320" width="600" height="40" fill="#040505"/>
+</svg>
